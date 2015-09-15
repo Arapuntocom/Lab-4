@@ -178,9 +178,8 @@ int main(int argc, char*argv[]){
 	FILE *f1;
 	f1 = fopen(archivo, "wb");	
 	
-	for(i =0; i<tamFilas; i++){
-		for(j =0; j<tamCol; j++){
-			
+	for(j =0; j<tamCol; j++){
+		for(i =0; i< tamFilas; i++){			
 			fwrite(&grilla[i][j], sizeof(float), 1, f1);
 		}
 	}
