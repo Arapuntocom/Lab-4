@@ -4,9 +4,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#define X 0
-#define Y 1
-
 int main(int argc, char*argv[]) {
     int option = 0;
     float depth, limInfReal, limInfComp, limSupReal, limSupComp, muestreo;
@@ -65,7 +62,7 @@ int main(int argc, char*argv[]) {
 	float tamFilas = ((limSupComp - limInfComp)/muestreo)+1.0;		
 	float tamCol = ((limSupReal - limInfReal)/muestreo)+1.0;
 	float tot = tamFilas*tamCol; 
-	printf("grilla de [%g]x[%g]\n", tamFilas, tamCol);
+	printf("grilla de [ %g ]x[ %g ]\n", tamFilas, tamCol);
 	
 	
 	//#########  Generando grilla del plano para escribir los resultados

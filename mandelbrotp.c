@@ -6,9 +6,6 @@
 #include <pthread.h>
 #include <time.h>
 
-#define X 0
-#define Y 1
-
 typedef struct {
 	int
 		id,
@@ -19,7 +16,7 @@ typedef struct {
 //#### Datos Globales
 float depth, limInfReal, limInfComp, limSupReal, limSupComp, muestreo; 	// para datos de entrada getopt
 
-float **grilla;
+float **grilla;	// grilla del plano para guardar los resultados de cada punto c.
 
 
 void *maldelbrot(void*argTh){
@@ -76,7 +73,6 @@ int main(int argc, char*argv[]){
 	
 	//##########  GETOPT, exceptuando datos globales
 	int option = 0; 		//opción para getopt
-	//char archivo[] = "archivo.raw";
 	char *archivo;
 	int cantThreads = 0;	// cantidad de threads.
 	
@@ -138,7 +134,7 @@ int main(int argc, char*argv[]){
 	float tamFilas = ((limSupComp - limInfComp)/muestreo)+1.0;		
 	float tamCol = ((limSupReal - limInfReal)/muestreo)+1.0;
 	float tot = tamFilas*tamCol; 
-	printf("grilla de [%g]x[%g]\n", tamFilas, tamCol);
+	printf("grilla de [ %g ]x[ %g ]\n", tamFilas, tamCol);
 	
 	//#########  Generando grilla del plano para escribir los resultados
 	//float **grilla;  //declarada como dato global.
@@ -168,7 +164,7 @@ int main(int argc, char*argv[]){
 		pthread_create(&threads[i], NULL, &maldelbrot, args);	
 	}	
 	
-	//#### Esperando que cada Threads finalize
+	//#### Esperando que cada Thread finalize
 	for(i=0; i < cantThreads; i++){
 		pthread_join(threads[i], NULL);
 	}
